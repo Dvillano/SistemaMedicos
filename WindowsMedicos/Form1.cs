@@ -70,11 +70,12 @@ namespace WindowsMedicos
 
             if (filasAfectadas > 0)
             {
+                mostrarMedicos();
                 MessageBox.Show("Medico guardado con exito");
             }
             else
             {
-                MessageBox.Show("No se puedo guardar medico");
+                MessageBox.Show("No se pudo guardar medico");
             }
 
             borrarCampos();
@@ -110,6 +111,38 @@ namespace WindowsMedicos
         {
             int idMedico = int.Parse(txtId.Text);
             gridMedicos.DataSource = AdminMedico.TraerUno(idMedico);
+        }
+
+        private void btnEliminarMedico_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(txtId.Text);
+
+            int filasAfectadas = AdminMedico.Eliminar(id);
+
+            if (filasAfectadas > 0)
+            {
+                MessageBox.Show("Se elimino medico correctamente");
+                mostrarMedicos();
+            }
+        }
+
+        private void btnModificarMedico_Click(object sender, EventArgs e)
+        {
+            Medico medicoModificado = new Medico(int.Parse(txtId.Text),txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), (int)cbEspecialidad.SelectedValue);
+
+            int filasAfectadas = AdminMedico.Modificar(medicoModificado);
+
+            if (filasAfectadas > 0)
+            {
+                mostrarMedicos();
+                MessageBox.Show("Medico modificado con exito");
+            }
+            else
+            {
+                MessageBox.Show("No se pudo modificado medico");
+            }
+
+            borrarCampos();
         }
     }
 }

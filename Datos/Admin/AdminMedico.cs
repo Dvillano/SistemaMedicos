@@ -104,7 +104,39 @@ namespace Datos.Admin
             return filasAfectadas;
         }
 
-        //TODO Falta implementar codigo
+        // Eliminar medico por Id
+        public static int Eliminar(int idMedico)
+        {
+            string querySql = "DELETE FROM dbo.Medico WHERE Id = @Id";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(querySql, AdminDB.ConectarBase());
+
+            adapter.SelectCommand.Parameters.Add("@Id", SqlDbType.Int).Value = idMedico;
+
+            int filasAfectadas = adapter.SelectCommand.ExecuteNonQuery();
+
+            AdminDB.ConectarBase().Close();
+            return filasAfectadas;
+        }
+
+        // Modificar medico
+        public static int Modificar(Medico medico)
+        {
+            string querySql = "UPDATE dbo.Medico SET Nombre = @Nombre, Apellido = @Apellido, NroMatricula = @NroMatricula, EspecialidadId = @EspecialidadId WHERE Id = @Id";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(querySql, AdminDB.ConectarBase());
+
+            adapter.SelectCommand.Parameters.Add("@Nombre", SqlDbType.VarChar, 50).Value = medico.Nombre;
+            adapter.SelectCommand.Parameters.Add("@Apellido", SqlDbType.VarChar, 50).Value = medico.Apellido;
+            adapter.SelectCommand.Parameters.Add("@NroMatricula", SqlDbType.Int).Value = medico.NroMatricula;
+            adapter.SelectCommand.Parameters.Add("@EspecialidadId", SqlDbType.Int, 50).Value = medico.EspecialidadId;
+            adapter.SelectCommand.Parameters.Add("@Id", SqlDbType.Int).Value = medico.Id;
+
+            int filasAfectadas = adapter.SelectCommand.ExecuteNonQuery();
+
+            AdminDB.ConectarBase().Close();
+            return filasAfectadas;
+        }
 
     }
 }

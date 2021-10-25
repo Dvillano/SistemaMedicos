@@ -44,6 +44,8 @@ namespace WindowsMedicos
             this.btnTraerUnMedico = new System.Windows.Forms.Button();
             this.lblId = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.btnEliminarMedico = new System.Windows.Forms.Button();
+            this.btnModificarMedico = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridMedicos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,11 +177,33 @@ namespace WindowsMedicos
             this.txtId.Size = new System.Drawing.Size(45, 20);
             this.txtId.TabIndex = 16;
             // 
+            // btnEliminarMedico
+            // 
+            this.btnEliminarMedico.Location = new System.Drawing.Point(409, 63);
+            this.btnEliminarMedico.Name = "btnEliminarMedico";
+            this.btnEliminarMedico.Size = new System.Drawing.Size(132, 23);
+            this.btnEliminarMedico.TabIndex = 17;
+            this.btnEliminarMedico.Text = "Eliminar medico por ID";
+            this.btnEliminarMedico.UseVisualStyleBackColor = true;
+            this.btnEliminarMedico.Click += new System.EventHandler(this.btnEliminarMedico_Click);
+            // 
+            // btnModificarMedico
+            // 
+            this.btnModificarMedico.Location = new System.Drawing.Point(409, 92);
+            this.btnModificarMedico.Name = "btnModificarMedico";
+            this.btnModificarMedico.Size = new System.Drawing.Size(132, 23);
+            this.btnModificarMedico.TabIndex = 18;
+            this.btnModificarMedico.Text = "Modificar medico por ID";
+            this.btnModificarMedico.UseVisualStyleBackColor = true;
+            this.btnModificarMedico.Click += new System.EventHandler(this.btnModificarMedico_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(563, 450);
+            this.Controls.Add(this.btnModificarMedico);
+            this.Controls.Add(this.btnEliminarMedico);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.btnTraerUnMedico);
@@ -221,6 +245,8 @@ namespace WindowsMedicos
         private System.Windows.Forms.Button btnTraerUnMedico;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button btnEliminarMedico;
+        private System.Windows.Forms.Button btnModificarMedico;
     }
 }
 
