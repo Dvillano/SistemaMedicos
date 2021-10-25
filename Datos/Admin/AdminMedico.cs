@@ -49,6 +49,7 @@ namespace Datos.Admin
             return listaMedicos;
         }
 
+
         //Metodo Listar(idEspecialidad ) Modelo desconectado
         public static DataTable Listar(int EspecialidadId)
         {
@@ -67,6 +68,7 @@ namespace Datos.Admin
 
             return ds.Tables["EspecialidadId"];
         }
+
 
         public static DataTable TraerUno(int idMedico)
         {
