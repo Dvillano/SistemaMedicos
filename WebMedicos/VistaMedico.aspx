@@ -18,12 +18,11 @@
             <br />
             Nro Matricula:<asp:TextBox ID="txtNroMatricula" runat="server"></asp:TextBox>
             <br />
-            <asp:Label ID="lblPrueba" runat="server" Text="Label"></asp:Label>
-            <asp:DropDownList ID="ddlEspecialidad" runat="server" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" AppendDataBoundItems="True" ></asp:DropDownList>
+            <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" ></asp:DropDownList>
             <br />
             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
-            <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+            <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
+            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
             <br />
             <asp:GridView ID="gridMedico" runat="server">
             </asp:GridView>

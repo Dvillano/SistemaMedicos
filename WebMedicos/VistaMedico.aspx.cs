@@ -15,8 +15,11 @@ namespace WebMedicos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            mostrarMedicos();
-            llenarDropdownList();
+            if (!IsPostBack)
+            {
+                llenarDropdownList();
+                mostrarMedicos();
+            }
         }
 
         private void mostrarMedicos()
@@ -31,11 +34,20 @@ namespace WebMedicos
             ddlEspecialidad.DataSource = dt;
             ddlEspecialidad.DataValueField = dt.Columns["Id"].ToString();
             ddlEspecialidad.DataTextField = dt.Columns["Nombre"].ToString();
-           
+
+            ddlEspecialidad.Items.Insert(0, new ListItem("-Elegir especialidad-", ""));
+
             ddlEspecialidad.DataBind();
+
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            guardarMedico();
+
+        }
+
+        private void guardarMedico()
         {
             Medico medico = new Medico(txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNroMatricula.Text), Convert.ToInt32(ddlEspecialidad.SelectedValue));
 
@@ -45,16 +57,8 @@ namespace WebMedicos
             if (filasAfectadas > 0)
             {
                 mostrarMedicos();
-                borrarCampos()
+                borrarCampos();
             }
-
-            if (!Page.IsPostBack)
-            {
-                mostrarMedicos();
-                llenarDropdownList();
-            }
-
-            
         }
 
         private void borrarCampos()
@@ -64,9 +68,42 @@ namespace WebMedicos
             txtNroMatricula.Text = string.Empty;
         }
 
-        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnModificar_Click(object sender, EventArgs e)
         {
-            lblPrueba.Text = ddlEspecialidad.SelectedItem.ToString();
+            modificarMedico();
+
+        }
+
+        private void modificarMedico()
+        {
+            Medico medicoModificado = new Medico(int.Parse(txtId.Text), txtNombre.Text, txtApellido.Text, Convert.ToInt32(txtNroMatricula.Text), Convert.ToInt32(ddlEspecialidad.SelectedValue));
+
+
+            int filasAfectadas = AdminMedico.Modificar(medicoModificado);
+
+            if (filasAfectadas > 0)
+            {
+                mostrarMedicos();
+                borrarCampos();
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            eliminarMedico();
+        }
+
+        private void eliminarMedico()
+        {
+            int medicoEliminar = int.Parse(txtId.Text);
+
+            int filasAfectadas = AdminMedico.Eliminar(medicoEliminar);
+
+            if (filasAfectadas > 0)
+            {
+                mostrarMedicos();
+                borrarCampos();
+            }
         }
     }
 }
